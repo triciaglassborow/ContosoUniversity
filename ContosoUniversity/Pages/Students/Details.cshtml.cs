@@ -23,7 +23,7 @@ namespace ContosoUniversity.Pages.Students
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Students == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -34,16 +34,12 @@ namespace ContosoUniversity.Pages.Students
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
 
-            var student = await _context.Students.FirstOrDefaultAsync(m => m.ID == id);
-            if (student == null)
+            if (Student == null)
             {
                 return NotFound();
             }
-            else 
-            {
-                Student = student;
-            }
             return Page();
         }
+    
     }
 }
